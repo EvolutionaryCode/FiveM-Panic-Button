@@ -25,9 +25,10 @@ RegisterCommand('panicb', function(source, args, rawCommand)
     local message = ""
     if crossing ~= nil then
         crossing = GetStreetNameFromHashKey(crossing)
-	TriggerEvent('chatMessage', "^1" .. GetPlayerName(source) .. " has called a 10-99 near ^3" .. streetName .. " ^1and ^3" .. crossing .. , { 255, 187, 51 }, message)
+        message = "(INFO) " .. GetPlayerName(source) .. " has called a 10-99 near " .. streetName .. " and " .. crossing
     else
-       TriggerEvent('chatMessage', "^1" .. GetPlayerName(source) .. " has called a 10-99 near ^3" .. streetName .. " ^1 Notice: No Nearby Cross-Street", { 255, 187, 51 }, message)
-end
+        message = "(INFO) " .. GetPlayerName(source) .. " has called a 10-99 near " .. streetName .. " ^1 Notice: No Nearby Cross-Street"
+	end
 
-    
+    TriggerServerEvent('sendPlayerChatMessage', -1, message, {255, 0, 0})
+end, false)
